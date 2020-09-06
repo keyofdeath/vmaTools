@@ -16,21 +16,26 @@
     <title>Ns-Team VMA tool</title>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-static-top">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" data-menuanchor="vmatool" href="#vmatool">VMA Tool</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-menuanchor="speedtool" href="#speedtool">Speed Tool</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+
+<div id="header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#vmatool">VMA Tool</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#speedtool">Speed Tool</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
 <div id="fullpage">
-    <div class="section" id="section0">
+    <div class="section fp-auto-height-responsive" id="section0">
         <div class="container">
+            <h1><b>VMA</b> Tool</h1>
             <div class="row">
                 <div class="col">
                     <div class="input-group mb-3">
@@ -42,7 +47,7 @@
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">%VMA min, %VMA max, % step</span>
+                            <span class="input-group-text">%min, %max, %step</span>
                         </div>
                         <input class="form-control" id="p_vma_min" min="1" step="1" type="number" value="50">
                         <input class="form-control" id="p_vma_max" min="1" step="1" type="number" value="140">
@@ -51,10 +56,10 @@
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="">Distance min</span>
+                            <span class="input-group-text">Distance min</span>
                         </div>
-                        <input class="form-control" id="min_dist" min="1" step="1" type="number" value="100">
-                        <select class="form-control" data-live-search="true" id="min_dist_unit"
+                        <input class="form-control" id="vmaTool_min_dist" min="1" step="1" type="number" value="100">
+                        <select class="form-control" data-live-search="true" id="vmaTool_min_dist_unit"
                                 title="Uniter de distance">
                             <option>m</option>
                             <option>km</option>
@@ -65,8 +70,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Distance max</span>
                         </div>
-                        <input class="form-control" id="max_dist" min="1" step="1" type="number" value="1500">
-                        <select class="form-control" data-live-search="true" id="max_dist_unit"
+                        <input class="form-control" id="vmaTool_max_dist" min="1" step="1" type="number" value="1500">
+                        <select class="form-control" data-live-search="true" id="vmaTool_max_dist_unit"
                                 title="Uniter de distance">
                             <option>m</option>
                             <option>km</option>
@@ -77,8 +82,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Distance step</span>
                         </div>
-                        <input class="form-control" id="step_dist" min="1" step="1" type="number" value="100">
-                        <select class="form-control" data-live-search="true" id="step_dist_unit"
+                        <input class="form-control" id="vmaTool_step_dist" min="1" step="1" type="number" value="100">
+                        <select class="form-control" data-live-search="true" id="vmaTool_step_dist_unit"
                                 title="Uniter de distance">
                             <option>m</option>
                             <option>km</option>
@@ -87,19 +92,67 @@
                 </div>
             </div>
             <div class="row">
-                <button class="btn btn-primary btn-lg btn-block" id="run" type="button">Run !</button>
+                <button class="btn btn-primary btn-lg btn-block" id="runVma" type="button">Run !</button>
             </div>
+            <table id="tableVma"></table>
         </div>
-        <br>
-        <hr>
-        <br>
-        <div class="container">
-            <table id="table"></table>
-        </div>
-        <br><br>
     </div>
-    <div class="section" id="section1">
-        <h1>Hello</h1>
+    <div class="section fp-auto-height-responsive" id="section1">
+        <div class="container">
+            <h1><b>Speed</b> Tool</h1>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">%min, %max, %step</span>
+                        </div>
+                        <input class="form-control" id="speedTool_speed_min" min="1" step="0.1" type="number" value="10">
+                        <input class="form-control" id="speedTool_speed_max" min="1" step="0.1" type="number" value="30">
+                        <input class="form-control" id="speedTool_speed_step" min="1" step="0.1" type="number" value="0.5">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Distance min</span>
+                        </div>
+                        <input class="form-control" id="speedTool_min_dist" min="1" step="1" type="number" value="100">
+                        <select class="form-control" data-live-search="true" id="speedTool_min_dist_unit"
+                                title="Uniter de distance">
+                            <option>m</option>
+                            <option>km</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Distance max</span>
+                        </div>
+                        <input class="form-control" id="speedTool_max_dist" min="1" step="1" type="number" value="1500">
+                        <select class="form-control" data-live-search="true" id="speedTool_max_dist_unit"
+                                title="Uniter de distance">
+                            <option>m</option>
+                            <option>km</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Distance step</span>
+                        </div>
+                        <input class="form-control" id="speedTool_step_dist" min="1" step="1" type="number" value="100">
+                        <select class="form-control" data-live-search="true" id="speedTool_step_dist_unit"
+                                title="Uniter de distance">
+                            <option>m</option>
+                            <option>km</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn btn-primary btn-lg btn-block" id="runSpeed" type="button">Run !</button>
+            </div>
+            <table id="tableSpeed"></table>
+        </div>
     </div>
 </div>
 
@@ -116,7 +169,7 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
 <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
-<script src="js/fullpage.js"></script>
+<script type="text/javascript" src="js/fullpage.min.js"></script>
 <script src="js/metric.js"></script>
 <script src="js/jq_ations.js"></script>
 
@@ -126,11 +179,9 @@
         anchors: ['vmatool', 'speedtool'],
         navigation: true,
         navigationPosition: 'right',
-        navigationTooltips: ['VMA Tool', 'Speed Tool'],
-        responsiveWidth: 1100,
-        afterResponsive: function (isResponsive) {
-        }
+        navigationTooltips: ['VMA Tool', 'Speed Tool']
     });
+    myFullpage.setMouseWheelScrolling(false);
 </script>
 </body>
 </html>

@@ -13,7 +13,7 @@ class Speed {
     /**
      *
      * @param speed Speed in <unit>/<time>
-     * @param speed_unit unit of speed
+     * @param speed_unit unit of speed <unit>/<time>
      */
     constructor(speed, speed_unit) {
         this.speed = speed
@@ -187,7 +187,39 @@ function creat_vma_array(vma_speed, percentage_vma_min, percentage_vma_max, perc
         })
         time_from_speed_dist[HALF_MARATHON_DIST.get_string()] = new Time(HALF_MARATHON_DIST, speed_from_percentage_vma)
         time_from_speed_dist[MARATHON_DIST.get_string()] = new Time(MARATHON_DIST, speed_from_percentage_vma)
-        res[`${p}%`] = {"speed_from_percentage_vma": speed_from_percentage_vma, "time":time_from_speed_dist}
+        res[`${p}%`] = {"speed_from_percentage_vma": speed_from_percentage_vma, "time": time_from_speed_dist}
+    }
+    return res
+}
+
+function creat_speed_array(speed_min, speed_max, speed_step, distance_min, distance_max, distance_step) {
+
+    // Creat distances list with all distances
+    let distances = [distance_min, distance_min.add_distance(distance_step)]
+    // Add untile we rich the max distance
+    while (distances[distances.length - 1].as_millimeter() <= distance_max.as_millimeter())
+        distances.push(distances[distances.length - 1].add_distance(distance_step))
+
+    /**
+     * Key: (string) Speed
+     * Value: (dict) in format
+     *  {
+     *          "distance label": (Time) Time to do this distance basted on speed_from_percentage_vma,
+     *          ...
+     *  }
+     * @type {{}}
+     */
+    let res = {}
+    let speed
+    for (let s = speed_min; s <= speed_max; s += speed_step) {
+        speed = new Speed(s, CONSTANTS.kilometer_per_hour)
+        let time_from_speed_dist = {}
+        distances.forEach(function (distance) {
+            time_from_speed_dist[distance.get_string()] = new Time(distance, speed)
+        })
+        time_from_speed_dist[HALF_MARATHON_DIST.get_string()] = new Time(HALF_MARATHON_DIST, speed)
+        time_from_speed_dist[MARATHON_DIST.get_string()] = new Time(MARATHON_DIST, speed)
+        res[`${speed.get_string()}`] = time_from_speed_dist
     }
     return res
 }

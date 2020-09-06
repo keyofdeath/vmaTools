@@ -1,1 +1,16 @@
 .mr10 {margin-right: 10px;}
+
+#header, #footer{
+    position:fixed;
+    display:block;
+    width: 100%;
+    z-index:9;
+    text-align:center;
+}
+
+#header{
+    top:0px;
+}
+#footer{
+    bottom:0px;
+}
