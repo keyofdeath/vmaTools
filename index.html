@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet">
+    <link href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css"
+          rel="stylesheet">
+    <link href="css/fullpage.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/style.css" rel="stylesheet">
+    <title>Ns-Team VMA tool</title>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" data-menuanchor="vmatool" href="#vmatool">VMA Tool</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-menuanchor="speedtool" href="#speedtool">Speed Tool</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div id="fullpage">
+    <div class="section" id="section0">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">VMA in km/h</span>
+                        </div>
+                        <input class="form-control" id="vma" type="number" value="21">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">%VMA min, %VMA max, % step</span>
+                        </div>
+                        <input class="form-control" id="p_vma_min" min="1" step="1" type="number" value="50">
+                        <input class="form-control" id="p_vma_max" min="1" step="1" type="number" value="140">
+                        <input class="form-control" id="p_vma_step" min="1" step="1" type="number" value="10">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="">Distance min</span>
+                        </div>
+                        <input class="form-control" id="min_dist" min="1" step="1" type="number" value="100">
+                        <select class="form-control" data-live-search="true" id="min_dist_unit"
+                                title="Uniter de distance">
+                            <option>m</option>
+                            <option>km</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Distance max</span>
+                        </div>
+                        <input class="form-control" id="max_dist" min="1" step="1" type="number" value="1500">
+                        <select class="form-control" data-live-search="true" id="max_dist_unit"
+                                title="Uniter de distance">
+                            <option>m</option>
+                            <option>km</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Distance step</span>
+                        </div>
+                        <input class="form-control" id="step_dist" min="1" step="1" type="number" value="100">
+                        <select class="form-control" data-live-search="true" id="step_dist_unit"
+                                title="Uniter de distance">
+                            <option>m</option>
+                            <option>km</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn btn-primary btn-lg btn-block" id="run" type="button">Run !</button>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="container">
+            <table id="table"></table>
+        </div>
+        <br><br>
+    </div>
+    <div class="section" id="section1">
+        <h1>Hello</h1>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script crossorigin="anonymous"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
+<script src="js/fullpage.js"></script>
+<script src="js/metric.js"></script>
+<script src="js/jq_ations.js"></script>
+
+<script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+        licenseKey: "4F50CC50-B0BB422F-99EA33A8-ED6E8730",
+        anchors: ['vmatool', 'speedtool'],
+        navigation: true,
+        navigationPosition: 'right',
+        navigationTooltips: ['VMA Tool', 'Speed Tool'],
+        responsiveWidth: 1100,
+        afterResponsive: function (isResponsive) {
+        }
+    });
+</script>
+</body>
+</html>
